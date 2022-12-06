@@ -15,13 +15,35 @@
 
 .App-header {
   background-color: #282c34;
-  min-height: 100vh;
+  min-height: 10vh;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-end;
   font-size: calc(10px + 2vmin);
   color: white;
+}
+
+.App-header-items{
+  margin-top: 10px;
+  margin-right: 10px;
+  min-height: 10px;
+  background: #61dafb;
+  border-radius: 10px;
+  font-size: 20px;
+}
+.Forms{
+  margin-left: 50px;
+  margin-top: 50px;
+  background: #5a5c6a;
+  border-style: double;
+  border-radius: 10px;
+  max-width: 270px;
+}
+.Forms-input-items{
+  margin-left: 10px;
+  font-size: 20px;
+  border-radius: 10px;
 }
 
 .App-link {

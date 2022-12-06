@@ -1,0 +1,6 @@
+
+.wrapper{
+    display: grid;
+    gap: 10px;
+    background-color: rgb(37, 207, 45);
+}

@@ -1,7 +1,20 @@
-import './App.css';
-import {FormEvent, useState} from "react";
 
-export default Auth(){
+import '../App.css';
+import {FormEvent, useState} from "react";
+import { useNavigate } from "react-router-dom";
+import {
+    Route,
+    Routes,
+    Link
+} from 'react-router-dom';
+import Registration from "./registration/Registration";
+import Authorization from "./login/Authorization";
+import MainWindow from "./mainWindow/mainWindow";
+import Chat from "./messages/Chat";
+// in render
+
+function App() {
+    const navigate = useNavigate();
 
     const [login, setLogin] = useState('');
     const [loginError, setLoginError] = useState('');
@@ -46,32 +59,19 @@ export default Auth(){
         }
 
     };
+
     return <>
-        <form onSubmit={handleSubmit}>
-            <div>
-                <h1>Authorization</h1>
-            </div>
-            <div>
-                <input onChange={e => setLogin(e.target.value)} type="text" placeholder="login" value={login}/>
-                {loginError && <div className="error">{loginError}</div>}
-            </div><br/>
+        <div>
+            <button onClick={()=> navigate('authorization')}>sign in</button>
+            <button onClick={()=> navigate('mainwindow')}>main</button>
+        </div>
+        <Routes>
+            <Route path="/mainwindow" element={<MainWindow />}/>
+            <Route path="/registration" element={<Registration />}/>
+            <Route path="/authorization" element={<Authorization />}/>
+        </Routes>
 
-            <div>
-                <input onChange={e => setPassword(e.target.value)} type="password" placeholder="password"
-                       value={password}/>
-                {passwordError && <div className="error">{passwordError}</div>}
-            </div><br/>
-
-            <div>
-                <input onChange={e => setRepeatPassword(e.target.value)} type="password" placeholder="repeat password"
-                       value={repeat}/>
-                {repeatError && <div className="error">{repeatError}</div>}
-            </div>
-
-            <div>
-                <button type="sumbit">login</button>
-
-            </div>
-        </form>
-        </>;
+    </>;
 }
+
+export default App;

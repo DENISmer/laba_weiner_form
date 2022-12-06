@@ -1,5 +1,4 @@
-
-import './App.css';
+import '../../App.css';
 import {FormEvent, useState} from "react";
 import { useNavigate } from "react-router-dom";
 import {
@@ -7,10 +6,10 @@ import {
     Routes,
     Link
 } from 'react-router-dom';
-import Registration from "./Registration";
-// in render
+import MainWindow from "../mainWindow/mainWindow";
+import Registration from "../registration/Registration";
 
-function App() {
+export default function Auth(){
     const navigate = useNavigate();
 
     const [login, setLogin] = useState('');
@@ -56,17 +55,37 @@ function App() {
         }
 
     };
-
     return <>
+        <form  className="Forms" onSubmit={handleSubmit}>
+            <div>
+                <h1>Authorization</h1>
+            </div>
+            <div>
+                <input className='Forms-input-items' onChange={e => setLogin(e.target.value)} type="text" placeholder="login" value={login}/>
+                {loginError && <div className="error">{loginError}</div>}
+            </div><br/>
 
+            <div>
+                <input className='Forms-input-items' onChange={e => setPassword(e.target.value)} type="password" placeholder="password"
+                       value={password}/>
+                {passwordError && <div className="error">{passwordError}</div>}
+            </div><br/>
+
+            <div>
+                <input className='Forms-input-items' onChange={e => setRepeatPassword(e.target.value)} type="password" placeholder="repeat password"
+                       value={repeat}/>
+                {repeatError && <div className="error">{repeatError}</div>}
+            </div>
+
+            <div>
+                <button className="App-header-items" type="sumbit">login</button>
+            </div>
+            <div>
+                <button className="App-header-items" onClick={()=> navigate("/registration")}>sign up</button>
+            </div>
+        </form>
         <Routes>
             <Route path="/registration" element={<Registration />}/>
         </Routes>
-
-        <button onClick={()=> navigate('/registration')}>
-            Registration
-        </button>
-    </>;
+        </>;
 }
-
-export default App;
